@@ -13,7 +13,7 @@ class Teamscontent extends CI_Model {
 
     function getAllTeams() {
 
- 		//$this->db->where('enable_2014', 1);
+ 		$this->db->where('enable_2014', 1);
         $this->db->order_by('name', 'ASC');
         //$this->db->limit($limit, $offset);
         $this->db->from($this->db->dbprefix('national_team'));

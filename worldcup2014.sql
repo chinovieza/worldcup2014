@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2014 at 12:47 PM
+-- Generation Time: Mar 07, 2014 at 05:51 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.25
 
@@ -220,46 +220,55 @@ CREATE TABLE IF NOT EXISTS `wc2014_national_team` (
   `debug_coefficient1` int(11) DEFAULT '1',
   `debug_coefficient2` int(11) DEFAULT NULL,
   `enable_2014` int(11) NOT NULL DEFAULT '0',
+  `continent` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- Dumping data for table `wc2014_national_team`
 --
 
-INSERT INTO `wc2014_national_team` (`id`, `name`, `group_stage`, `short_name`, `debug_coefficient1`, `debug_coefficient2`, `enable_2014`) VALUES
-(1, 'South Africa', '', 'RSA', 1, 4, 0),
-(2, 'Mexico', '', 'MEX', 1, 3, 0),
-(3, 'Uruguay', '', 'URU', 1, 2, 0),
-(4, 'France', '', 'FRA', 1, 1, 0),
-(5, 'Argentina', '', 'ARG', 1, 4, 0),
-(6, 'Nigeria', '', 'NGA', 1, 3, 0),
-(7, 'Korea Republic', '', 'KOR', 1, 2, 0),
-(8, 'Greece', '', 'GRE', 1, 1, 0),
-(9, 'England', '', 'ENG', 1, 4, 0),
-(10, 'USA', '', 'USA', 1, 3, 0),
-(11, 'Algeria', '', 'ALG', 1, 2, 0),
-(12, 'Slovenia', '', 'SVN', 1, 1, 0),
-(13, 'Germany', '', 'GER', 1, 4, 0),
-(14, 'Australia', '', 'AUS', 1, 3, 0),
-(15, 'Serbia', '', 'SRB', 1, 2, 0),
-(16, 'Ghana', '', 'GHA', 1, 1, 0),
-(17, 'Netherlands', '', 'NED', 1, 4, 0),
-(18, 'Denmark', '', 'DEN', 1, 3, 0),
-(19, 'Japan', '', 'JPN', 1, 2, 0),
-(20, 'Cameroon', '', 'CMR', 1, 1, 0),
-(21, 'Italy', '', 'ITA', 1, 4, 0),
-(22, 'Paraguay', '', 'PAR', 1, 3, 0),
-(23, 'New Zealand', '', 'NZL', 1, 2, 0),
-(24, 'Slovakia', '', 'SVK', 1, 1, 0),
-(25, 'Brazil', '', 'BRA', 1, 4, 0),
-(26, 'Korea DPR', '', 'PRK', 1, 3, 0),
-(27, 'Côte d''Ivoire', '', 'CIV', 1, 2, 0),
-(28, 'Portugal', '', 'POR', 1, 1, 0),
-(29, 'Spain', '', 'ESP', 1, 4, 0),
-(30, 'Switzerland', '', 'SUI', 1, 3, 0),
-(31, 'Honduras', '', 'HON', 1, 2, 0),
-(32, 'Chile', '', 'CHI', 1, 1, 0);
+INSERT INTO `wc2014_national_team` (`id`, `name`, `group_stage`, `short_name`, `debug_coefficient1`, `debug_coefficient2`, `enable_2014`, `continent`) VALUES
+(1, 'South Africa', '', 'RSA', 1, 4, 0, 0),
+(2, 'Mexico', 'A', 'MEX', 1, 3, 1, 4),
+(3, 'Uruguay', 'D', 'URU', 1, 2, 1, 5),
+(4, 'France', 'E', 'FRA', 1, 1, 1, 3),
+(5, 'Argentina', 'F', 'ARG', 1, 4, 1, 5),
+(6, 'Nigeria', 'F', 'NGA', 1, 3, 1, 1),
+(7, 'Korea Republic', 'H', 'KOR', 1, 2, 1, 2),
+(8, 'Greece', 'C', 'GRE', 1, 1, 1, 3),
+(9, 'England', 'D', 'ENG', 1, 4, 1, 3),
+(10, 'USA', 'G', 'USA', 1, 3, 1, 4),
+(11, 'Algeria', 'H', 'ALG', 1, 2, 1, 1),
+(12, 'Slovenia', '', 'SVN', 1, 1, 0, 0),
+(13, 'Germany', 'G', 'GER', 1, 4, 1, 3),
+(14, 'Australia', 'B', 'AUS', 1, 3, 1, 2),
+(15, 'Serbia', '', 'SRB', 1, 2, 0, 0),
+(16, 'Ghana', 'G', 'GHA', 1, 1, 1, 1),
+(17, 'Netherlands', 'B', 'NED', 1, 4, 1, 3),
+(18, 'Denmark', '', 'DEN', 1, 3, 0, 0),
+(19, 'Japan', 'C', 'JPN', 1, 2, 1, 2),
+(20, 'Cameroon', 'A', 'CMR', 1, 1, 1, 1),
+(21, 'Italy', 'D', 'ITA', 1, 4, 1, 3),
+(22, 'Paraguay', '', 'PAR', 1, 3, 0, 0),
+(23, 'New Zealand', '', 'NZL', 1, 2, 0, 0),
+(24, 'Slovakia', '', 'SVK', 1, 1, 0, 0),
+(25, 'Brazil', 'A', 'BRA', 1, 4, 1, 5),
+(26, 'Korea DPR', '', 'PRK', 1, 3, 0, 0),
+(27, 'Côte d''Ivoire', 'C', 'CIV', 1, 2, 1, 1),
+(28, 'Portugal', 'G', 'POR', 1, 1, 1, 3),
+(29, 'Spain', 'B', 'ESP', 1, 4, 1, 3),
+(30, 'Switzerland', 'E', 'SUI', 1, 3, 1, 3),
+(31, 'Honduras', 'E', 'HON', 1, 2, 1, 4),
+(32, 'Chile', 'B', 'CHI', 1, 1, 1, 5),
+(33, 'Iran', 'F', 'IRN', 1, NULL, 1, 2),
+(34, 'Belgium', 'H', 'BEL', 1, NULL, 1, 3),
+(35, 'Bosnia-Herzegovina', 'F', 'BIH', 1, NULL, 1, 3),
+(36, 'Croatia', 'A', 'CRO', 1, NULL, 1, 3),
+(37, 'Russia', 'H', 'RUS', 1, NULL, 1, 3),
+(38, 'Costa Rica', 'D', 'CRC', 1, NULL, 1, 4),
+(39, 'Colombia', 'C', 'COL', 1, NULL, 1, 5),
+(40, 'Ecuador', 'E', 'ECU', 1, NULL, 1, 5);
 
 -- --------------------------------------------------------
 

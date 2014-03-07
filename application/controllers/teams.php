@@ -5,11 +5,10 @@ class Teams extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('Teamscontent');
-
-		$allTeamList = $this->Teamscontent->getAllTeams();
-		print_r($allTeamList);
-
-		//$this->load->view('page_matches');
+		
+		$data["teamslist"]["contents"] = $this->Teamscontent->getAllTeams();
+		
+		$this->load->view('page_teams', $data);
 	}
 }
 
