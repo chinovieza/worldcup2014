@@ -33,5 +33,16 @@
         <div class="<?echo $tab1Cls;?>" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
     		<? $this->load->view('matches_table_groupstage', $group_stage) ?>
         </div>
+
+        <?
+        if ($getTab==2) {
+            $tab2Cls = "tab-content default-tab";
+        } else {
+            $tab2Cls = "tab-content";
+        }
+        ?>
+        <div class="<?echo $tab2Cls;?>" id="tab2">
+            <? $this->load->view('matches_table_knockoutstage', $knockout_stage) ?>
+        </div>
     </div>
 </div>

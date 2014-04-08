@@ -14,7 +14,7 @@ class Matches extends CI_Controller {
 		$this->load->model('Tournament');
 
 		//configuration
-		$defaultTab = 1;
+		$defaultTab = 2;
 		$timeSetting = $this->config->item('time_setting', 'content');
 		
 		//get
@@ -22,6 +22,7 @@ class Matches extends CI_Controller {
 		$getTz = isset($_GET["tz"]) ? $_GET["tz"] : 1;
 		if ($getTz!=1 && $getTz!=2 && $getTz!=3) $getTz = 1; //force
 		
+		//- Group Stage -//
 		$matchesGroupStage = $this->Matchescontent->getMatchesGroupStage();
 		if (is_array($matchesGroupStage) && sizeof($matchesGroupStage)>0) {
 			foreach ($matchesGroupStage as $mgsKey => $mgsData) {
@@ -35,6 +36,11 @@ class Matches extends CI_Controller {
 			}
 		}
 		$data["matches_data"]["group_stage"]["contents"] = $matchesGroupStage;
+		$data["groupStageMatchesNum"] = sizeof($data["matches_data"]["group_stage"]["contents"]);
+
+		//- Knockout Stage -//
+		$matchesKnockoutStage = $this->Matchescontent->getMatchesKnockoutStage();
+		$data["matches_data"]["knockout_stage"]["contents"] = $matchesKnockoutStage;
 		
 
 		$data["getTz"] = $getTz;

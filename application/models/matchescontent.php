@@ -60,4 +60,65 @@ class Matchescontent extends CI_Model {
         
         return $data;
     }
+
+    function getKnockoutStage() {
+        
+        $this->db->where('id !=', 1);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get($this->db->dbprefix('stage'));
+        $data = array();
+        foreach ($query->result_array() as $row) {
+            array_push($data, $row);
+        }
+        return $data;
+
+    }
+
+    function getMatchesByStage($stage_id) {
+        $sql = "SELECT A.id, team_home, team_away, stadium, remark_home, remark_away, match_status";
+        $sql .= " , B.name AS hteam, B.short_name AS hteams, C.name AS ateam, C.short_name AS ateams";
+        $sql .= " , D.name AS venue_name, D.city AS venue_city";
+        $sql .= " , DATE_FORMAT(match_datetime_gmt, '%e') AS mday, DATE_FORMAT(match_datetime_gmt, '%c') AS mmonth, DATE_FORMAT(match_datetime_gmt, '%Y') AS myear";
+        $sql .= " , DATE_FORMAT(match_datetime_gmt, '%H') AS mhour, DATE_FORMAT(match_datetime_gmt, '%i') AS mmin, DATE_FORMAT(match_datetime_gmt, '%s') AS msec";
+        $sql .= " FROM ".$this->db->dbprefix('match')." A";
+        $sql .= " LEFT JOIN ".$this->db->dbprefix('national_team')." B";
+        $sql .= " ON A.team_home = B.id";
+        $sql .= " LEFT JOIN ".$this->db->dbprefix('national_team')." C";
+        $sql .= " ON A.team_away = C.id";
+        $sql .= " INNER JOIN ".$this->db->dbprefix('stadium')." D";
+        $sql .= " ON A.stadium = D.id";
+        $sql .= " WHERE stage = ".$stage_id;
+        //$sql .= " AND A.enable_2014 = 1";
+        $sql .= " ORDER BY match_datetime_gmt ASC";
+
+        $query = $this->db->query($sql);
+
+        $data = array();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result_array() as $row) {
+                array_push($data, $row);
+            }
+            
+        }
+        
+        return $data;
+    }
+
+    function getMatchesKnockoutStage() {
+        $knStage = $this->getKnockoutStage();
+        
+        $data = array();
+        foreach ($knStage as $kns) {
+            $matchesData = $this->getMatchesByStage($kns["id"]);
+            $item = array(
+                "stage_id" => $kns["id"],
+                "stage_name" => $kns["name"],
+                "stage_matches" => $matchesData,
+                );
+            array_push($data, $item);
+        }
+
+        return $data;
+    }
+
 }

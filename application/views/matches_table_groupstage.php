@@ -47,7 +47,13 @@ if (isset($contents) && is_array($contents) && sizeof($contents)>0) {
     		$mGmtStmp = mktime ($rec["mhour"], $rec["mmin"], $rec["msec"], $rec["mmonth"], $rec["mday"], $rec["myear"]);
     		$procStmp = $mGmtStmp + ((60*60) * $timeSetting[$getTz]["timezone"]);
     		$matchTime = date("d",$procStmp)."/".date("m",$procStmp)."/".date("Y",$procStmp)." ".date("H",$procStmp).":".date("i",$procStmp);
-    		$matchDetail = "-";
+            $teamHomeScore = isset($rec["teamHomeScore"]) ? $rec["teamHomeScore"] : 0;
+            $teamAwayScore = isset($rec["teamAwayScore"]) ? $rec["teamAwayScore"] : 0;
+            if ($rec["match_status"]==4) {
+                $matchDetail = "<a href=\"".$_SERVER["PHP_SELF"]."?show=match&match=".$rec["id"]."\"><b>".$teamHomeScore." - ".$teamAwayScore."</b></a>";
+            } else {
+                $matchDetail = "<a href=\"".$_SERVER["PHP_SELF"]."?show=match&match=".$rec["id"]."\">V</a>";
+            }
 		?>
 		<tr>
 	        <td><?echo $no;?></td>
